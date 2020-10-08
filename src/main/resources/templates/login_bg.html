@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Cloud Admin | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- UNIFORM -->
+    <link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css"/>
+    <!-- ANIMATE -->
+    <link rel="stylesheet" type="text/css" href="css/animatecss/animate.min.css"/>
+    <!-- FONTS -->
+    <link href='#css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <style>
+        .warning {
+            color: red;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        function checkName1() {
+            var username = $('#username1').val();
+            var flag = false;
+            if (username != "") {
+                flag = true;
+                $('#username1Warning').html("")
+            } else {
+                $('#username1Warning').html("用户名不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd1() {
+            var password = $('#password1').val();
+            var flag = false;
+            if (password != "") {
+                flag = true;
+                $('#password1Warning').html("")
+            } else {
+                $('#password1Warning').html("密码不能为空！")
+            }
+            return flag;
+        }
+
+        function checkName2() {
+            var username = $('#username2').val();
+            var flag = false;
+            if (username != "") {
+                flag = true;
+                $('#username2Warning').html("")
+            } else {
+                $('#username2Warning').html("用户名不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd2() {
+            var password = $('#password2').val();
+            var flag = false;
+            if (password != "") {
+                flag = true;
+                $('#password2Warning').html("")
+            } else {
+                $('#password2Warning').html("密码不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd3() {
+            var password2 = $('#password2').val();
+            var password3 = $('#password3').val();
+            var flag = false;
+            if (password2 != "" && password3 == password2) {
+                flag = true;
+                $('#password3Warning').html("")
+            } else {
+                $('#password3Warning').html("两次密码不一致！")
+            }
+            return flag;
+        }
+
+        $(function () {
+            $('#loginForm').submit(function () {
+                if (checkName1() && checkPwd1()) {
+                    $.post("user/login", $(this).serialize(), function (data) {
+                        if (data.success) {
+                            location.href = "index.html";
+                            $('#username1').val("");
+                            $('#password1').val("");
+                        } else {
+                            alert(data.msg);
+                            $('#password1').val("");
+                        }
+
+                    });
+                }
+                return false;
+            });
+            $('#registForm').submit(function () {
+                if (checkName2() && checkPwd2() && checkPwd3()) {
+                    $.post("user/regist", $(this).serialize(), function (data) {
+                        if (data.success) {
+                            alert(data.msg);
+                            swapScreen('login_bg');
+                            $('#username2').val("");
+                            $('#password2').val("");
+                            $('#password3').val("");
+                        } else {
+                            alert(data.msg);
+                            $('#username2').val("");
+                        }
+                    });
+                }
+                return false;
+
+            });
+            $('#username1').blur(checkName1);
+            $('#password1').blur(checkPwd1);
+            $('#username2').blur(checkName2);
+            $('#password2').blur(checkPwd2);
+            $('#password3').blur(checkPwd3);
+        });
+    </script>
+</head>
+<body class="login">
+<!-- PAGE -->
+<section id="page">
+    <!-- HEADER -->
+    <header>
+        <!-- NAV-BAR -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div id="logo">
+                        <a href="#"><img src="img/logo/logo.png" height="40" alt="logo name"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/NAV-BAR -->
+    </header>
+    <!--/HEADER -->
+    <!-- LOGIN -->
+    <section id="login_bg" class="visible">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-box">
+                        <h2 class="bigintro">Sign In</h2>
+                        <div class="divide-40"></div>
+                        <form role="form" id="loginForm">
+                            <div class="form-group">
+                                <label for="username1">用户名</label>
+                                <i class="fa fa-envelope"></i>
+                                <input type="text" class="form-control" id="username1" name="username">
+                                <span id="username1Warning" class="warning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password1">密码</label>
+                                <i class="fa fa-lock"></i>
+                                <input type="password" class="form-control" id="password1" name="password">
+                                <span id="password1Warning" class="warning"></span>
+                            </div>
+                            <div>
+                                <label class="checkbox"> <input type="checkbox" class="uniform" value=""> Remember
+                                    me</label>
+                                <button type="submit" class="btn btn-danger">Submit</button>
+                            </div>
+                        </form>
+
+                        <div class="login-helpers">
+                            Don't have an account with us? <a href="#"
+                                                              onclick="swapScreen('register_bg');return false;">Register
+                            now!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/LOGIN -->
+    <!-- REGISTER -->
+    <section id="register_bg" class="font-400">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-box">
+                        <h2 class="bigintro">Register</h2>
+                        <div class="divide-40"></div>
+                        <form role="form" id="registForm">
+                            <div class="form-group">
+                                <label for="username2">用户名</label>
+                                <i class="fa fa-user"></i>
+                                <input type="text" class="form-control" id="username2" name="username">
+                                <span id="username2Warning" class="warning"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password2">密码</label>
+                                <i class="fa fa-lock"></i>
+                                <input type="password" class="form-control" id="password2" name="password">
+                                <span id="password2Warning" class="warning"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password3">确认密码</label>
+                                <i class="fa fa-check-square-o"></i>
+                                <input type="password" class="form-control" id="password3">
+                                <span id="password3Warning" class="warning"></span>
+                            </div>
+                            <div>
+                                <label class="checkbox"> <input type="checkbox" class="uniform" value=""> I agree to the
+                                    <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                                <button type="submit" class="btn btn-success">Sign Up</button>
+                            </div>
+                        </form>
+
+                        <div class="login-helpers">
+                            <a href="#" onclick="swapScreen('login_bg');return false;"> Back to Login</a> <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/REGISTER -->
+
+</section>
+<!--/PAGE -->
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<!--<script src="js/jquery/jquery-2.0.3.min.js"></script>-->
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+<!-- UNIFORM -->
+<script type="text/javascript" src="js/uniform/jquery.uniform.min.js"></script>
+<!-- BACKSTRETCH -->
+<script type="text/javascript" src="js/backstretch/jquery.backstretch.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("login_bg");  //Set current page
+        App.init(); //Initialise plugins and elements
+    });
+</script>
+<script type="text/javascript">
+    function swapScreen(id) {
+        jQuery('.visible').removeClass('visible animated fadeInUp');
+        jQuery('#' + id).addClass('visible animated fadeInUp');
+    }
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>
