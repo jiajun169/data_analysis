@@ -29,35 +29,107 @@
     </style>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
+        function checkName1() {
+            var username = $('#username1').val();
+            var flag = false;
+            if (username != "") {
+                flag = true;
+                $('#username1Warning').html("")
+            } else {
+                $('#username1Warning').html("用户名不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd1() {
+            var password = $('#password1').val();
+            var flag = false;
+            if (password != "") {
+                flag = true;
+                $('#password1Warning').html("")
+            } else {
+                $('#password1Warning').html("密码不能为空！")
+            }
+            return flag;
+        }
+
+        function checkName2() {
+            var username = $('#username2').val();
+            var flag = false;
+            if (username != "") {
+                flag = true;
+                $('#username2Warning').html("")
+            } else {
+                $('#username2Warning').html("用户名不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd2() {
+            var password = $('#password2').val();
+            var flag = false;
+            if (password != "") {
+                flag = true;
+                $('#password2Warning').html("")
+            } else {
+                $('#password2Warning').html("密码不能为空！")
+            }
+            return flag;
+        }
+
+        function checkPwd3() {
+            var password2 = $('#password2').val();
+            var password3 = $('#password3').val();
+            var flag = false;
+            if (password2 != "" && password3 == password2) {
+                flag = true;
+                $('#password3Warning').html("")
+            } else {
+                $('#password3Warning').html("两次密码不一致！")
+            }
+            return flag;
+        }
 
         $(function () {
             $('#loginForm').submit(function () {
-                $.post("user/login", $(this).serialize(), function (data) {
-                    if (data.success) {
-                        location.href = "index.html";
-                        $('#username1').val("");
-                        $('#password1').val("");
-                    } else {
-                        alert(data.msg);
-                        $('#password1').val("");
-                    }
+                if (checkName1() && checkPwd1()) {
+                    $.post("user/login", $(this).serialize(), function (data) {
+                        if (data.success) {
+                            location.href = "index.html";
+                            $('#username1').val("");
+                            $('#password1').val("");
+                        } else {
+                            alert(data.msg);
+                            $('#password1').val("");
+                        }
 
-                });
+                    });
+                }
+                return false;
             });
             $('#registForm').submit(function () {
-                $.post("user/regist", $(this).serialize(), function (data) {
-                    if (data.success) {
-                        alert(data.msg);
-                        swapScreen('login_bg');
-                        $('#username2').val("");
-                        $('#password2').val("");
-                        $('#password3').val("");
-                    } else {
-                        alert(data.msg);
-                        $('#username2').val("");
-                    }
-                });
+                if (checkName2() && checkPwd2() && checkPwd3()) {
+                    $.post("user/regist", $(this).serialize(), function (data) {
+                        if (data.success) {
+                            alert(data.msg);
+                            swapScreen('login_bg');
+                            $('#username2').val("");
+                            $('#password2').val("");
+                            $('#password3').val("");
+                        } else {
+                            alert(data.msg);
+                            $('#username2').val("");
+                        }
+                    });
+                }
+                return false;
+
             });
+            $('#username1').blur(checkName1);
+            $('#password1').blur(checkPwd1);
+            $('#username2').blur(checkName2);
+            $('#password2').blur(checkPwd2);
+            $('#password3').blur(checkPwd3);
         });
     </script>
 </head>
