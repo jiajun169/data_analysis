@@ -163,24 +163,24 @@
             itemWidth: 27,
             itemHeight: 15,
             textStyle: {
-                color: '#333333',
-                fontSize: 14,
+                color: '#fff',
+                fontSize: 14
             },
             pieces: [{
                 min: 500,
-                label: '>500',
+                label: '>500'
             }, {
                 max: 500,
                 min: 200,
-                label: '200-500',
+                label: '200-500'
             }, {
                 max: 200,
                 min: 0,
-                label: '<200',
+                label: '<200'
             }, {
                 value: 0,
-                label: '无数据',
-            },],
+                label: '无数据'
+            }],
             inRange: {
                 color: ['rgba(210, 234, 255, 0.42)', 'rgba(138, 198, 253, 0.42)', 'rgba(69, 165, 248, 0.42)', 'rgba(6, 90, 171, 0.42)']
             },
@@ -213,10 +213,10 @@
             //zoom:1.1,
             label: {
                 normal: {
-                    show: false,
+                    show: false
                 },
                 emphasis: {
-                    show: false,
+                    show: false
                 }
             },
             itemStyle: {
