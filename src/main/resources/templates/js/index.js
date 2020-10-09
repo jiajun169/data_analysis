@@ -153,7 +153,7 @@
         tooltip: {
             show: true,
             formatter: function (params) {
-                return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '人&nbsp;&nbsp;';
+                return '&nbsp;&nbsp;' + params.name + '：' + params.value + '人&nbsp;&nbsp;';
             }
         },
         visualMap: {
@@ -182,10 +182,10 @@
                 label: '无数据',
             },],
             inRange: {
-                color: ['#B2CAE0', '#D2EAFF', '#8AC6FD', '#45A5F8']
+                color: ['rgba(210, 234, 255, 0.42)', 'rgba(138, 198, 253, 0.42)', 'rgba(69, 165, 248, 0.42)', 'rgba(6, 90, 171, 0.42)']
             },
             outOfRange: {
-                color: ['#999999']
+                color: ['rgba(153, 153, 153, 0.42)']
             }
         },
         geo: {
@@ -221,12 +221,12 @@
             },
             itemStyle: {
                 normal: {
-                    areaColor: '#B2CAE0',
+                    areaColor: 'rgba(178, 202, 224, 0.42)',
                     borderColor: '#fff',
-                    borderWidth: 1,
+                    borderWidth: 1
                 },
                 emphasis: {
-                    areaColor: '#FFAE00',
+                    areaColor: 'rgba(255, 174, 0, 0.42)'
                 }
             },
             data: outdata
