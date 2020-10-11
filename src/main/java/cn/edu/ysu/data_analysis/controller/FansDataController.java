@@ -41,7 +41,7 @@ public class FansDataController {
 
     @RequestMapping("/gender")
     public String gender() {
-        List<Fans> fans = fansService.findGender();
+        List<Fans> fans = fansService.findAll();
         Map<String, Integer> gender_data = new HashMap<>();
         gender_data.put("男", 0);
         gender_data.put("女", 0);
