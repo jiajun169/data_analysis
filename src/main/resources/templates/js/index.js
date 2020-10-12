@@ -2,89 +2,87 @@
 (function () {
     // 实例化对象
     var myChart = echarts.init(document.querySelector(".bar .chart"));
-    $.post('fans/geo', function (data) {
-// 指定配置和数据
-        data = JSON.parse(data);
-        var xAxisData = [];
-        var fansData = [];
-        var i = 0;
-        for (var city in data) {
-            if (++i > 10) break;
-            xAxisData.push(city);
-            fansData.push(data[city]);
-        }
-        var option = {
-            color: ["#2f89cf"],
-            tooltip: {
-                trigger: "axis",
-                axisPointer: {
-                    // 坐标轴指示器，坐标轴触发有效
-                    type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+    // 指定配置和数据
+    var option = {
+        color: ["#2f89cf"],
+        tooltip: {
+            trigger: "axis",
+            axisPointer: {
+                // 坐标轴指示器，坐标轴触发有效
+                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        grid: {
+            left: "0%",
+            top: "20%",
+            right: "0%",
+            bottom: "0%",
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: "category",
+                data: [
+                    "旅游行业",
+                    "教育培训",
+                    "游戏行业",
+                    "医疗行业",
+                    "电商行业",
+                    "社交行业",
+                    "金融行业"
+                ],
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: "12"
+                    }
+                },
+                axisLine: {
+                    show: false
                 }
-            },
-            grid: {
-                left: "0%",
-                top: "20%",
-                right: "0%",
-                bottom: "0%",
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: "category",
-                    data: xAxisData,
-                    axisTick: {
-                        alignWithLabel: true
-                    },
-                    axisLabel: {
-                        textStyle: {
-                            color: "rgba(255,255,255,.6)",
-                            fontSize: "12"
-                        }
-                    },
-                    axisLine: {
-                        show: false
+            }
+        ],
+        yAxis: [
+            {
+                type: "value",
+                axisLabel: {
+                    textStyle: {
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: "12"
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: "rgba(255,255,255,.1)"
+                        // width: 1,
+                        // type: "solid"
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: "rgba(255,255,255,.1)"
                     }
                 }
-            ],
-            yAxis: [
-                {
-                    type: "value",
-                    axisLabel: {
-                        textStyle: {
-                            color: "rgba(255,255,255,.6)",
-                            fontSize: "12"
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: "rgba(255,255,255,.1)"
-                            // width: 1,
-                            // type: "solid"
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: "rgba(255,255,255,.1)"
-                        }
-                    }
+            }
+        ],
+        series: [
+            {
+                name: "直接访问",
+                type: "bar",
+                barWidth: "35%",
+                data: [200, 300, 300, 900, 1500, 1200, 600],
+                itemStyle: {
+                    barBorderRadius: 5
                 }
-            ],
-            series: [
-                {
-                    name: "粉丝数",
-                    type: "bar",
-                    barWidth: "35%",
-                    data: fansData,
-                    itemStyle: {
-                        barBorderRadius: 5
-                    }
-                }
-            ]
-        };
-        // 把配置给实例对象
-        myChart.setOption(option);
-    });
+            }
+        ]
+    };
+
+    // 把配置给实例对象
+    myChart.setOption(option);
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -94,149 +92,147 @@
 (function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.querySelector(".pie .chart"));
-    $.post('fans/gender', function (data) {
-        data = JSON.parse(data);
-        var option = {
-            tooltip: {
-                trigger: "item",
-                formatter: "{a} <br/>{b}: {c} ({d}%)",
-                position: function (p) {
-                    //其中p为当前鼠标的位置
-                    return [p[0] + 10, p[1] - 10];
-                }
-            },
-            legend: {
-                top: "90%",
-                itemWidth: 10,
-                itemHeight: 10,
-                textStyle: {
-                    color: "rgba(255,255,255,.5)",
-                    fontSize: "12"
-                }
-            },
-            series: [
-                {
-                    name: "性别分布",
-                    type: "pie",
-                    center: ["50%", "42%"],
-                    radius: ["40%", "60%"],
-                    color: [
-                        "#066eab",
-                        "#06dcab"
-                    ],
-                    label: {show: true},
-                    labelLine: {show: true},
-                    data: [
-                        {value: data["男"], name: "男"},
-                        {value: data["女"], name: "女"}
-                    ]
-                }
-            ]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    });
 
+    var option = {
+        tooltip: {
+            trigger: "item",
+            formatter: "{a} <br/>{b}: {c} ({d}%)",
+            position: function (p) {
+                //其中p为当前鼠标的位置
+                return [p[0] + 10, p[1] - 10];
+            }
+        },
+        legend: {
+            top: "90%",
+            itemWidth: 10,
+            itemHeight: 10,
+            textStyle: {
+                color: "rgba(255,255,255,.5)",
+                fontSize: "12"
+            }
+        },
+        series: [
+            {
+                name: "性别分布",
+                type: "pie",
+                center: ["50%", "42%"],
+                radius: ["40%", "60%"],
+                color: [
+                    "#066eab",
+                    "#06dcab"
+                ],
+                label: {show: true},
+                labelLine: {show: true},
+                data: [
+                    {value: 50, name: "男"},
+                    {value: 30, name: "女"}
+                ]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
     window.addEventListener("resize", function () {
         myChart.resize();
     });
 })();
 (function () {
     var myChart = echarts.init(document.querySelector(".map .chart"));
-    $.post('fans/geo', function (data) {
-        data = JSON.parse(data);
-        var outdata = [];
-        for (var city in data) {
-            outdata.push({
-                name: city,
-                value: data[city]
-            })
-        }
-        var option = {
-            tooltip: {
-                show: true,
-                formatter: function (params) {
-                    return '&nbsp;&nbsp;' + params.name + '：' + params.value + '人&nbsp;&nbsp;';
+    var outname = ["南海诸岛", '北京', '天津', '上海', '重庆', '河北', '河南', '云南', '辽宁', '黑龙江', '湖南', '安徽', '山东', '新疆', '江苏', '浙江', '江西', '湖北', '广西', '甘肃', '山西', '内蒙古', '陕西', '吉林', '福建', '贵州', '广东', '青海', '西藏', '四川', '宁夏', '海南', '台湾', '香港', '澳门'];
+    var outvalue = [0, 524, 13, 140, 75, 13, 83, 11, 19, 15, 69, 260, 39, 4, 31, 104, 36, 1052, 33, 347, 9, 157, 22, 4, 18, 5, 6398, 41, 0, 484, 404, 22, 3, 5, 225];
+    var outdata = [];
+    for (var i = 0; i < outname.length; i++) {
+        outdata.push({
+            name: outname[i],
+            value: outvalue[i]
+        })
+    }
+
+    var option = {
+        tooltip: {
+            show: true,
+            formatter: function (params) {
+                return '&nbsp;&nbsp;' + params.name + '：' + params.value + '人&nbsp;&nbsp;';
+            }
+        },
+        visualMap: {
+            type: 'piecewise',
+            left: '15',
+            bottom: '15',
+            itemWidth: 27,
+            itemHeight: 15,
+            textStyle: {
+                color: '#fff',
+                fontSize: 14
+            },
+            pieces: [{
+                min: 500,
+                label: '>500'
+            }, {
+                max: 500,
+                min: 200,
+                label: '200-500'
+            }, {
+                max: 200,
+                min: 0,
+                label: '<200'
+            }, {
+                value: 0,
+                label: '无数据'
+            }],
+            inRange: {
+                color: ['rgba(210, 234, 255, 0.42)', 'rgba(138, 198, 253, 0.42)', 'rgba(69, 165, 248, 0.42)', 'rgba(6, 90, 171, 0.42)']
+            },
+            outOfRange: {
+                color: ['rgba(153, 153, 153, 0.42)']
+            }
+        },
+        geo: {
+            map: 'china',
+            show: true,
+            roam: false,
+            label: {
+                emphasis: {
+                    show: false
                 }
             },
-            visualMap: {
-                type: 'piecewise',
-                left: '15',
-                bottom: '15',
-                itemWidth: 27,
-                itemHeight: 15,
-                textStyle: {
-                    color: '#fff',
-                    fontSize: 14
+            itemStyle: {
+                normal: {
+                    borderColor: 'rgba(0,63,140,0.2)',
+                    shadowColor: 'rgba(0,63,140,0.2)',
+                    shadowOffsetY: 20,
+                    shadowBlur: 30
+                }
+            }
+        },
+        series: [{
+            type: 'map',
+            map: 'china',
+            aspectScale: 0.75,
+            //zoom:1.1,
+            label: {
+                normal: {
+                    show: false
                 },
-                pieces: [{
-                    min: 100,
-                    label: '>100'
-                }, {
-                    max: 100,
-                    min: 50,
-                    label: '50-100'
-                }, {
-                    max: 50,
-                    min: 0,
-                    label: '<50'
-                }, {
-                    value: 0,
-                    label: '无数据'
-                }],
-                inRange: {
-                    color: ['rgba(210, 234, 255, 0.42)', 'rgba(138, 198, 253, 0.42)', 'rgba(69, 165, 248, 0.42)', 'rgba(6, 90, 171, 0.42)']
-                },
-                outOfRange: {
-                    color: ['rgba(153, 153, 153, 0.42)']
+                emphasis: {
+                    show: false
                 }
             },
-            geo: {
-                map: 'china',
-                show: true,
-                roam: false,
-                label: {
-                    emphasis: {
-                        show: false
-                    }
+            itemStyle: {
+                normal: {
+                    areaColor: 'rgba(178, 202, 224, 0.42)',
+                    borderColor: '#fff',
+                    borderWidth: 1
                 },
-                itemStyle: {
-                    normal: {
-                        borderColor: 'rgba(0,63,140,0.2)',
-                        shadowColor: 'rgba(0,63,140,0.2)',
-                        shadowOffsetY: 20,
-                        shadowBlur: 30
-                    }
+                emphasis: {
+                    areaColor: 'rgba(255, 174, 0, 0.42)'
                 }
             },
-            series: [{
-                type: 'map',
-                map: 'china',
-                aspectScale: 0.75,
-                //zoom:1.1,
-                label: {
-                    normal: {
-                        show: false
-                    },
-                    emphasis: {
-                        show: false
-                    }
-                },
-                itemStyle: {
-                    normal: {
-                        areaColor: 'rgba(178, 202, 224, 0.42)',
-                        borderColor: '#fff',
-                        borderWidth: 1
-                    },
-                    emphasis: {
-                        areaColor: 'rgba(255, 174, 0, 0.42)'
-                    }
-                },
-                data: outdata
-            }]
-        };
-        myChart.setOption(option);
-    });
+            data: outdata
+        }]
+    };
+    myChart.setOption(option);
     window.addEventListener("resize", function () {
         myChart.resize();
     });

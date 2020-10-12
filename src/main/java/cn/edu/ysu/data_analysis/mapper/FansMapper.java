@@ -12,10 +12,4 @@ import java.util.List;
 public interface FansMapper {
     @Select("select * from fans_data")
     List<Fans> findAll();
-
-    @Select("select location from fans_data")
-    List<Fans> findGeo();
-
-    @Select("select gender from fans_data")
-    List<Fans> findGender();
 }
