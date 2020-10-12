@@ -7,7 +7,9 @@
         data = JSON.parse(data);
         var xAxisData = [];
         var fansData = [];
+        var i = 0;
         for (var city in data) {
+            if (++i > 10) break;
             xAxisData.push(city);
             fansData.push(data[city]);
         }
