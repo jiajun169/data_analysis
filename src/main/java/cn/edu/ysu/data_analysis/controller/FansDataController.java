@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -55,5 +56,11 @@ public class FansDataController {
             }
         }
         return JSONObject.toJSONString(gender_data);
+    }
+    @RequestMapping("/list")
+    public ModelAndView fansinfo() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("fansinfo");
+        return mv;
     }
 }
