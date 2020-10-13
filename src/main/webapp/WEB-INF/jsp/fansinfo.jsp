@@ -142,57 +142,65 @@
                         </div>
                     </div>
                     <!-- /PAGE HEADER -->
+
                     <!-- DATA TABLES -->
                     <div class="row">
                         <div class="col-md-12">
+
+                            <div class="box border orange">
+                                <div class="box-body big">
+                                    <h3 class="form-title">信息检索</h3>
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail2" name="name" placeholder="昵称">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                            <input type="text" class="form-control" id="exampleInputPassword2" name="location" placeholder="地区">
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" name="gender">
+                                                <option value="">请选择性别</option>
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-inverse">查询</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
                             <!-- BOX -->
                             <div class="box border pink">
                                 <div class="box-title">
                                     <h4><i class="fa fa-table"></i>Simple Table</h4>
-                                    <!--									<div class="tools">-->
-                                    <!--										<a href="#box-config" data-toggle="modal" class="config">-->
-                                    <!--											<i class="fa fa-cog"></i>-->
-                                    <!--										</a>-->
-                                    <!--										<a href="javascript:;" class="reload">-->
-                                    <!--											<i class="fa fa-refresh"></i>-->
-                                    <!--										</a>-->
-                                    <!--										<a href="javascript:;" class="collapse">-->
-                                    <!--											<i class="fa fa-chevron-up"></i>-->
-                                    <!--										</a>-->
-                                    <!--										<a href="javascript:;" class="remove">-->
-                                    <!--											<i class="fa fa-times"></i>-->
-                                    <!--										</a>-->
-                                    <!--									</div>-->
                                 </div>
                                 <div class="box-body">
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>编号</th>
+                                            <th>昵称</th>
+                                            <th>性别</th>
+                                            <th>地区</th>
+                                            <th>关注人数</th>
+                                            <th>粉丝人数</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        <c:forEach items="${pageInfo.list}" var="fan" varStatus="s">
+                                            <tr>
+                                                <td>${fan.id }</td>
+                                                <!--						  <td><input type="checkbox"></td> -->
+                                                <td>${fan.name }</td>
+                                                <td>${fan.gender }</td>
+                                                <td>${fan.location}</td>
+                                                <td>${fan.follow}</td>
+                                                <td>${fan.fans}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                         <tfoot>
                                         <tr >
@@ -258,6 +266,18 @@
 <!-- BLOCK UI -->
 <script type="/text/javascript" src="/js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
 <!-- TABLE CLOTH -->
+<!-- TYPEHEAD -->
+<script type="text/javascript" src="/js/typeahead/typeahead.min.js"></script><!-- AUTOSIZE -->
+<script type="text/javascript" src="/js/autosize/jquery.autosize.min.js"></script>
+<!-- COUNTABLE -->
+<script type="text/javascript" src="/js/countable/jquery.simplyCountable.min.js"></script>
+<!-- INPUT MASK -->
+<script type="text/javascript" src="/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+<!-- SELECT2 -->
+<script type="text/javascript" src="/js/select2/select2.min.js"></script>
+<!-- UNIFORM -->
+<script type="text/javascript" src="/js/uniform/jquery.uniform.min.js"></script>
+
 <script type="/text/javascript" src="/js/tablecloth/js/jquery.tablecloth.js"></script>
 <script type="/text/javascript" src="/js/tablecloth/js/jquery.tablesorter.min.js"></script>
 <!-- COOKIE -->

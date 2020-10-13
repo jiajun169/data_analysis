@@ -5,8 +5,11 @@ import cn.edu.ysu.data_analysis.mapper.FansMapper;
 import cn.edu.ysu.data_analysis.service.FansService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,9 +60,14 @@ public class FansDataController {
         }
         return JSONObject.toJSONString(gender_data);
     }
-    @RequestMapping("/list")
-    public ModelAndView fansinfo() {
+    @RequestMapping("/index")
+    public ModelAndView getAllFans(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
         ModelAndView mv = new ModelAndView();
+        PageHelper.startPage(pn, 5);
+        List<Fans> fans = fansService.findAll();
+        System.out.println(fans);
+        PageInfo<Fans> page = new PageInfo<Fans>(fans, 6);
+        mv.addObject("pageInfo", page);
         mv.setViewName("fansinfo");
         return mv;
     }

@@ -12,3 +12,8 @@ spring:
       suffix: .jsp
   resources:
     static-locations: classpath:/templates
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
