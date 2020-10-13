@@ -99,7 +99,7 @@
                 </li>
                 <li><a class="" href="#" target="_blank"><i class="fa fa-desktop fa-fw"></i>
                     <span class="menu-text">粉丝信息分析</span></a></li>
-                <li><a class="" href="inbox.html"><i class="fa fa-envelope-o fa-fw"></i> <span
+                <li><a class="" href="#"><i class="fa fa-envelope-o fa-fw"></i> <span
                         class="menu-text">用户信息</span></a></li>
             </ul>
             <!-- /SIDEBAR MENU -->
