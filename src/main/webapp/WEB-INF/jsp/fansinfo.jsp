@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,14 +91,13 @@
             <!-- SIDEBAR MENU -->
             <ul>
                 <li>
-                    <a href="index.html">
+                    <a href="/index.html">
                         <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">粉丝信息可视化</span>
-                        <span class="selected"></span>
                     </a>
                 </li>
-                <li class="has-sub active"><a class="" href="widgets_box.html"><i class="fa fa-th-large fa-fw"></i> <span class="menu-text">粉丝信息管理</span></a>
+                <li class="active"><a class="" href="/fans/findByCondition"><i class="fa fa-th-large fa-fw"></i> <span class="menu-text">粉丝信息管理</span></a>
                 </li>
-                <li><a class="" href="frontend_theme/index.html" target="_blank"><i class="fa fa-desktop fa-fw"></i>
+                <li><a class="" href="#" target="_blank"><i class="fa fa-desktop fa-fw"></i>
                     <span class="menu-text">粉丝信息分析</span></a></li>
                 <li><a class="" href="inbox.html"><i class="fa fa-envelope-o fa-fw"></i> <span
                         class="menu-text">用户信息</span></a></li>
@@ -153,7 +152,7 @@
                             <div class="box border orange">
                                 <div class="box-body big">
                                     <h3 class="form-title">信息检索</h3>
-                                    <form class="form-inline" role="form" action="/fans/index">
+                                    <form class="form-inline" role="form" action="/fans/findByCondition">
                                         <div class="form-group">
                                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
                                             <input type="text" class="form-control" id="exampleInputEmail2" name="name" value="${condition.name}" placeholder="昵称">
@@ -213,26 +212,27 @@
                                         </c:forEach>
                                         </tbody>
                                         <tfoot>
-                                        <tr >
+                                        <tr>
                                             <td colspan="8" align="center">
                                                 <ul class="pagination">
-                                                    <li><a href="index?pn=1">首页</a></li>
+                                                    <li><a href="findByCondition?pn=1&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">首页</a></li>
                                                     <c:if test="${pageInfo.hasPreviousPage}">
-                                                        <li><a href="index?pn=${pageInfo.pageNum-1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                                        <li><a href="findByCondition?pn=${pageInfo.pageNum-1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                                                     </c:if>
                                                     <c:forEach items="${pageInfo.navigatepageNums }"  var="page_Num">
                                                         <c:if test="${page_Num==pageInfo.pageNum }">
                                                             <li class="active"><a href="#">${page_Num}</a></li>
                                                         </c:if>
                                                         <c:if test="${page_Num!=pageInfo.pageNum }">
-                                                            <li><a href="index?pn=${page_Num}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">${page_Num}</a></li>
+                                                            <li><a href="findByCondition?pn=${page_Num}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">${page_Num}</a></li>
                                                         </c:if>
                                                     </c:forEach>
                                                     <c:if test="${pageInfo.hasNextPage}">
-                                                        <li><a href="index?pn=${pageInfo.pageNum+1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                                                        <li><a href="findByCondition?pn=${pageInfo.pageNum+1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                                                     </c:if>
-                                                    <li><a href="index?pn=${pageInfo.pages }&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">尾页</a></li>
+                                                    <li><a href="findByCondition?pn=${pageInfo.pages }&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">尾页</a></li>
                                                 </ul>
+                                                <div>共 ${pageInfo.pages} 页，总共 ${pageInfo.total} 记录</div>
                                             </td>
                                         </tr>
                                         </tfoot>

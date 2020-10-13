@@ -68,6 +68,7 @@ public class FansDataController {
         List<Fans> fans = fansService.findByCondition(condition);
         PageInfo<Fans> page = new PageInfo<Fans>(fans, 6);
         mv.addObject("pageInfo", page);
+        mv.addObject("condition", condition);
         mv.setViewName("fansinfo");
         return mv;
     }
