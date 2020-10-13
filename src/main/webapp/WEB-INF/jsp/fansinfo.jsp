@@ -43,7 +43,7 @@
         <div class="navbar-brand">
             <!-- COMPANY LOGO -->
             <a href="index.html">
-                <img src="img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive" height="30" width="120">
+                <img src="/img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive" height="30" width="120">
             </a>
             <!-- /COMPANY LOGO -->
             <!-- TEAM STATUS FOR MOBILE -->
@@ -67,7 +67,7 @@
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <li class="dropdown user pull-right" id="header-user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img alt="" src="img/avatars/avatar3.jpg"/>
+                    <img alt="" src="/img/avatars/avatar3.jpg"/>
                     <span class="username">John Doe</span>
                     <i class="fa fa-angle-down"></i>
                 </a>
@@ -288,10 +288,10 @@
 <!-- UNIFORM -->
 <script type="text/javascript" src="/js/uniform/jquery.uniform.min.js"></script>
 
-<script type="/text/javascript" src="/js/tablecloth/js/jquery.tablecloth.js"></script>
-<script type="/text/javascript" src="/js/tablecloth/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="/js/tablecloth/js/jquery.tablecloth.js"></script>
+<script type="text/javascript" src="/js/tablecloth/js/jquery.tablesorter.min.js"></script>
 <!-- COOKIE -->
-<script type="/text/javascript" src="/js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="/js/jQuery-Cookie/jquery.cookie.min.js"></script>
 <!-- CUSTOM SCRIPT -->
 <script src="/js/script.js"></script>
 <script>
