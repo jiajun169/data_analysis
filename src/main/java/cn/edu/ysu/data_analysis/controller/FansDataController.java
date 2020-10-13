@@ -60,12 +60,12 @@ public class FansDataController {
         }
         return JSONObject.toJSONString(gender_data);
     }
-    @RequestMapping("/index")
-    public ModelAndView getAllFans(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
+
+    @RequestMapping("/findByCondition")
+    public ModelAndView findByCondition(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Fans condition) {
         ModelAndView mv = new ModelAndView();
         PageHelper.startPage(pn, 5);
-        List<Fans> fans = fansService.findAll();
-        System.out.println(fans);
+        List<Fans> fans = fansService.findByCondition(condition);
         PageInfo<Fans> page = new PageInfo<Fans>(fans, 6);
         mv.addObject("pageInfo", page);
         mv.setViewName("fansinfo");

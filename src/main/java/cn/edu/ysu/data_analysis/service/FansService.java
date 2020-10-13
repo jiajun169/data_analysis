@@ -10,4 +10,6 @@ public interface FansService {
     List<Fans> findGeo();
 
     List<Fans> findGender();
+
+    List<Fans> findByCondition(Fans condition);
 }

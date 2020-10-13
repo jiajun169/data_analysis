@@ -27,4 +27,9 @@ public class FansServiceImpl implements FansService {
     public List<Fans> findGender() {
         return fansMapper.findGender();
     }
+
+    @Override
+    public List<Fans> findByCondition(Fans condition) {
+        return fansMapper.findByCondition(condition);
+    }
 }
