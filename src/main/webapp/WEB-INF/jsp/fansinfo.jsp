@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+
+    </script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>Cloud Admin | Dynamic Tables</title>
@@ -150,20 +153,27 @@
                             <div class="box border orange">
                                 <div class="box-body big">
                                     <h3 class="form-title">信息检索</h3>
-                                    <form class="form-inline" role="form">
+                                    <form class="form-inline" role="form" action="/fans/index">
                                         <div class="form-group">
                                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail2" name="name" placeholder="昵称">
+                                            <input type="text" class="form-control" id="exampleInputEmail2" name="name" value="${condition.name}" placeholder="昵称">
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword2" name="location" placeholder="地区">
+                                            <input type="text" class="form-control" id="exampleInputPassword2" name="location" value="${condition.location}" placeholder="地区">
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" name="gender">
-                                                <option value="">请选择性别</option>
-                                                <option value="男">男</option>
-                                                <option value="女">女</option>
+                                                <option value="" <c:if test="${condition.gender ==''}">
+                                                    selected
+                                                </c:if> >请选择性别
+                                                </option>
+                                                <option value="男" <c:if test="${condition.gender =='男'}">
+                                                    selected
+                                                </c:if>>男</option>
+                                                <option value="女" <c:if test="${condition.gender =='女'}">
+                                                    selected
+                                                </c:if>>女</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-inverse">查询</button>
@@ -208,20 +218,20 @@
                                                 <ul class="pagination">
                                                     <li><a href="index?pn=1">首页</a></li>
                                                     <c:if test="${pageInfo.hasPreviousPage}">
-                                                        <li><a href="index?pn=${pageInfo.pageNum-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                                        <li><a href="index?pn=${pageInfo.pageNum-1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                                                     </c:if>
                                                     <c:forEach items="${pageInfo.navigatepageNums }"  var="page_Num">
                                                         <c:if test="${page_Num==pageInfo.pageNum }">
                                                             <li class="active"><a href="#">${page_Num}</a></li>
                                                         </c:if>
                                                         <c:if test="${page_Num!=pageInfo.pageNum }">
-                                                            <li><a href="index?pn=${page_Num}">${page_Num}</a></li>
+                                                            <li><a href="index?pn=${page_Num}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">${page_Num}</a></li>
                                                         </c:if>
                                                     </c:forEach>
                                                     <c:if test="${pageInfo.hasNextPage}">
-                                                        <li><a href="index?pn=${pageInfo.pageNum+1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                                                        <li><a href="index?pn=${pageInfo.pageNum+1}&name=${condition.name}&gender=${condition.gender}&location=${condition.location}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                                                     </c:if>
-                                                    <li><a href="index?pn=${pageInfo.pages }">尾页</a></li>
+                                                    <li><a href="index?pn=${pageInfo.pages }&name=${condition.name}&gender=${condition.gender}&location=${condition.location}">尾页</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
