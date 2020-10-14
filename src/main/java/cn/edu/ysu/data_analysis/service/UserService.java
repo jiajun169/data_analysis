@@ -7,4 +7,6 @@ public interface UserService {
     Result regist(User user);
 
     Result login(User user);
+
+    Result update(User user);
 }

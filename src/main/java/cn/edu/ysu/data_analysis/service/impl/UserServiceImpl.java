@@ -45,4 +45,14 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public Result update(User user) {
+        userMapper.update(user);
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setDetail(null);
+        result.setMsg("修改成功！");
+        return result;
+    }
+
 }

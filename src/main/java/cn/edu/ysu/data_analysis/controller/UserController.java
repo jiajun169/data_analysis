@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -14,12 +16,19 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public Result login(User user) {
+    public Result login(User user, HttpSession session) {
+        session.setAttribute("user", user);
         return userService.login(user);
     }
 
     @RequestMapping("/regist")
     public Result regist(User user) {
         return userService.regist(user);
+    }
+
+    @RequestMapping("/update")
+    public Result update(User user, HttpSession session) {
+        session.setAttribute("user", user);
+        return userService.update(user);
     }
 }

@@ -1,10 +1,7 @@
 package cn.edu.ysu.data_analysis.mapper;
 
 import cn.edu.ysu.data_analysis.bean.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -19,4 +16,7 @@ public interface UserMapper {
 
     @Select("select u.username,u.password from user u where u.username=#{username}")
     User findByName(String username);
+
+    @Update("update user set username=#{username}, password=#{password} where id=#{id}")
+    void update(User user);
 }
