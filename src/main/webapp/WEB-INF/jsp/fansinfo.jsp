@@ -68,11 +68,11 @@
             <li class="dropdown user pull-right" id="header-user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img alt="" src="/img/avatars/avatar3.jpg"/>
-                    <span class="username">John Doe</span>
+                    <span class="username">admin</span>
                     <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="login.html"><i class="fa fa-power-off"></i> Log Out</a></li>
+                    <li><a href="/user/logout"><i class="fa fa-power-off"></i> Log Out</a></li>
                 </ul>
             </li>
             <!-- END USER LOGIN DROPDOWN -->
@@ -97,9 +97,7 @@
                 </li>
                 <li class="active"><a class="" href="/fans/findByCondition"><i class="fa fa-th-large fa-fw"></i> <span class="menu-text">粉丝信息管理</span></a>
                 </li>
-                <li><a class="" href="#" target="_blank"><i class="fa fa-desktop fa-fw"></i>
-                    <span class="menu-text">粉丝信息分析</span></a></li>
-                <li><a class="" href="#"><i class="fa fa-envelope-o fa-fw"></i> <span
+                <li><a class="" href="/user/password"><i class="fa fa-envelope-o fa-fw"></i> <span
                         class="menu-text">用户信息</span></a></li>
             </ul>
             <!-- /SIDEBAR MENU -->
@@ -130,19 +128,19 @@
             <div class="row">
                 <div id="content" class="col-lg-12">
                     <!-- PAGE HEADER-->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="page-header">
-                                <!-- STYLER -->
-                                </br>
-                                </br>
-                                <!-- /STYLER -->
-                                <div class="clearfix">
-                                    <h3 class="content-title pull-left">粉丝数信息列表</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<%--                    <div class="row">--%>
+<%--                        <div class="col-sm-12">--%>
+<%--                            <div class="page-header">--%>
+<%--                                <!-- STYLER -->--%>
+<%--                                </br>--%>
+<%--                                </br>--%>
+<%--                                <!-- /STYLER -->--%>
+<%--                                <div class="clearfix">--%>
+<%--                                    <h3 class="content-title pull-left">粉丝数信息列表</h3>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <!-- /PAGE HEADER -->
 
                     <!-- DATA TABLES -->
@@ -184,7 +182,7 @@
                             <!-- BOX -->
                             <div class="box border pink">
                                 <div class="box-title">
-                                    <h4><i class="fa fa-table"></i>Simple Table</h4>
+                                    <h4><i class="fa fa-table"></i>粉丝信息列表</h4>
                                 </div>
                                 <div class="box-body">
                                     <table class="table">

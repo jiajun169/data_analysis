@@ -31,9 +31,16 @@ public class UserController {
     }
 
     @RequestMapping("/update")
-    public Result update(User user, HttpSession session) {
-        session.setAttribute("user", user);
-        return userService.update(user);
+    public ModelAndView update(User user, HttpSession session) {
+        ModelAndView mv = new ModelAndView("userinfo");
+        userService.update(user);
+        return mv;
+    }
+    @RequestMapping("/password")
+    public ModelAndView update() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("userinfo");
+        return mv;
     }
 
     @RequestMapping("/logout")

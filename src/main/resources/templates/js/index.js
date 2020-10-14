@@ -171,15 +171,15 @@
                 },
                 pieces: [{
                     min: 100,
-                    label: '>100'
+                    label: '粉丝数 >100'
                 }, {
                     max: 100,
                     min: 50,
-                    label: '50-100'
+                    label: '粉丝数 50-100'
                 }, {
                     max: 50,
                     min: 0,
-                    label: '<50'
+                    label: '粉丝数 <50'
                 }, {
                     value: 0,
                     label: '无数据'
